@@ -14,7 +14,6 @@ public class FirebaseService {
         this.firebaseApp = firebaseApp;
     }
     public Object retrieveData(String path) {
-        System.out.println("BLALALALALLA");
         DatabaseReference reference = FirebaseDatabase.getInstance(firebaseApp).getReference(path);
         return getData(reference);
     }
@@ -30,7 +29,7 @@ public class FirebaseService {
                 throw new RuntimeException("Error retrieving data from Firebase: " + databaseError.getMessage());
             }
         });
-        // Waiting for the asynchronous operation to complete (not recommended in production)
+        // Waiting for the asynchronous operation to complete
         try {
             Thread.sleep(2000); // Adjust as needed
         } catch (InterruptedException e) {

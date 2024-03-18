@@ -9,22 +9,20 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/firebase")
-public class FirebaseController {
+public class CompanyController {
 
     private final FirebaseService firebaseService;
 
-    public FirebaseController(FirebaseService firebaseService) {
+    public CompanyController(FirebaseService firebaseService) {
         this.firebaseService = firebaseService;
     }
 
     @GetMapping("data")
     public Object retrieveData(@RequestParam String path) {
-        System.out.println("API HÄR!!!!!!!");
+
         try {
-            System.out.println("DATA HÄR!!!!!!!");
             return firebaseService.retrieveData(path);
         } catch (Exception e) {
-            System.out.println("ERRRROROROROROROOROROR");
             return "Error retrieving data";
         }
     }
