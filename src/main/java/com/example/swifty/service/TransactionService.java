@@ -1,7 +1,7 @@
 package com.example.swifty.service;
 
 import com.example.swifty.dto.TransactionRequest;
-import com.example.swifty.entity.transaction_log.Product;
+import com.example.swifty.entity.transaction_log.cartItems;
 import com.example.swifty.entity.transaction_log.Transaction;
 import com.example.swifty.entity.users.Company;
 import com.example.swifty.entity.users.User;
@@ -30,24 +30,25 @@ public class TransactionService {
     @Transactional
     public boolean handleTransaction(TransactionRequest request) {
 
-        Optional<Company> company = companyRepository.findByCompanyName(request.getCompanyName());
-        Optional<User> user = userRepository.findByUsername(request.getCustomerName());
+        Optional<Company> company = companyRepository.findById(request.getCompanyId());
+        Optional<User> user = userRepository.findById(request.getUserId());
 
         if (company.isPresent() && user.isPresent()) {
             try {
                 Transaction transaction = new Transaction();
-                transaction.setCompanyId(company.get().getCompanyId());
                 transaction.setCustomerId(user.get().getUserId());
+                transaction.setUserEmail(user.get().getEmail());
+                transaction.setCompanyId(company.get().getCompanyId());
                 transaction.setDateTime(request.getDateTime());
 
                 //Link the products to the transaction
-                List<Product> productList = new ArrayList<>();
-                for (Product product: request.getProducts()){
-                    product.setTransaction(transaction);
-                    productList.add(product);
+                List<cartItems> cartItemsList = new ArrayList<>();
+                for (cartItems cartItems : request.getCartItems()){
+                    cartItems.setTransaction(transaction);
+                    cartItemsList.add(cartItems);
                 }
                 //Add the product list
-                transaction.setProducts(productList);
+                transaction.setCartItems(cartItemsList);
 
                 transactionRepository.save(transaction);
 

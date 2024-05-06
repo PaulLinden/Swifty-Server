@@ -8,7 +8,7 @@ import lombok.Setter;
 @Setter
 @Getter
 @Entity
-public class Product {
+public class cartItems {
 
 
     @Id
@@ -22,9 +22,12 @@ public class Product {
     private Float price;
 
     @NonNull
+    private Float quantity;
+
+    @NonNull
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "transaction_id")
     private Transaction transaction;
 
-    public Product(){}
+    public cartItems(){}
 }

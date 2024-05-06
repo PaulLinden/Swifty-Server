@@ -19,13 +19,15 @@ public class Transaction {
     @NonNull
     private Long customerId;
     @NonNull
+    private String userEmail;
+    @NonNull
     private Long companyId;
     @NonNull
     private LocalDateTime dateTime;
 
     @NonNull
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "transaction", cascade = CascadeType.ALL)
-    private List<Product> products;
+    private List<cartItems> cartItems;
 
     public Transaction(){}
 }

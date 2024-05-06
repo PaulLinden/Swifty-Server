@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Objects;
 import java.util.Optional;
 
+import static com.example.swifty.dto.UserDTO.getUserDTO;
+
 @RestController
 @RequestMapping("/api/users")
 public class UserController {
@@ -59,14 +61,11 @@ public class UserController {
             if (user.isPresent()) {
 
                 User currentUser = user.get();
-
+                Individual currentUserIndividual = currentUser.getIndividual();
                 // Compare the entered password with the user's actual password (for educational purposes only)
                 if (request.getPassword().equals(currentUser.getPassword())) {
 
-                    UserDTO userDTO = new UserDTO();
-                    userDTO.setId(currentUser.getUserId());
-                    userDTO.setUsername(currentUser.getUsername());
-                    userDTO.setEmail(currentUser.getPassword());
+                    UserDTO userDTO = getUserDTO(currentUser, currentUserIndividual);
 
                     return ResponseEntity.ok(userDTO);
                 } else {

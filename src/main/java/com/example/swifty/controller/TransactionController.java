@@ -1,17 +1,10 @@
 package com.example.swifty.controller;
 
 import com.example.swifty.dto.TransactionRequest;
-import com.example.swifty.repository.CompanyRepository;
-import com.example.swifty.repository.TransactionRepository;
-import com.example.swifty.repository.UserRepository;
 import com.example.swifty.service.TransactionService;
-import com.example.swifty.service.UserService;
-import jakarta.servlet.http.HttpServletResponse;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.HttpRequestHandler;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,7 +17,7 @@ public class TransactionController {
         this.transactionService = transactionService;
     }
     @PostMapping("/transaction")
-    public ResponseEntity<String> transaction(@RequestBody TransactionRequest request, HttpServletResponse response) {
+    public ResponseEntity<String> transaction(@RequestBody TransactionRequest request) {
 
         boolean transactionStatus = transactionService.handleTransaction(request);
         System.out.println(transactionStatus);

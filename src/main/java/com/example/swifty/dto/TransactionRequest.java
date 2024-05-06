@@ -1,6 +1,6 @@
 package com.example.swifty.dto;
 
-import com.example.swifty.entity.transaction_log.Product;
+import com.example.swifty.entity.transaction_log.cartItems;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,8 +11,9 @@ import java.util.List;
 @Setter
 public class TransactionRequest {
 
-    private String customerName;
-    private String companyName;
+    private Long userId;
+    private String userEmail;
+    private Long companyId;
     private LocalDateTime dateTime;
-    private List<Product> products;
+    private List<cartItems> cartItems;
 }
