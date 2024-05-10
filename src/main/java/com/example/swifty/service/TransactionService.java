@@ -1,11 +1,9 @@
 package com.example.swifty.service;
 
 import com.example.swifty.dto.TransactionRequest;
-import com.example.swifty.entity.transaction_log.cartItems;
+import com.example.swifty.entity.transaction_log.transactionItems;
 import com.example.swifty.entity.transaction_log.Transaction;
-import com.example.swifty.entity.users.Company;
 import com.example.swifty.entity.users.User;
-import com.example.swifty.repository.CompanyRepository;
 import com.example.swifty.repository.TransactionRepository;
 import com.example.swifty.repository.UserRepository;
 import jakarta.transaction.Transactional;
@@ -19,10 +17,8 @@ import java.util.Optional;
 public class TransactionService {
 
     private final UserRepository userRepository;
-    private final CompanyRepository companyRepository;
     private final TransactionRepository transactionRepository;
-    public TransactionService(UserRepository userRepository, CompanyRepository companyRepository, TransactionRepository transactionRepository) {
-        this.companyRepository = companyRepository;
+    public TransactionService(UserRepository userRepository, TransactionRepository transactionRepository) {
         this.userRepository = userRepository;
         this.transactionRepository = transactionRepository;
     }
@@ -30,31 +26,29 @@ public class TransactionService {
     @Transactional
     public boolean handleTransaction(TransactionRequest request) {
 
-        Optional<Company> company = companyRepository.findById(request.getCompanyId());
         Optional<User> user = userRepository.findById(request.getUserId());
 
-        if (company.isPresent() && user.isPresent()) {
+        if (user.isPresent()) {
             try {
                 Transaction transaction = new Transaction();
                 transaction.setCustomerId(user.get().getUserId());
                 transaction.setUserEmail(user.get().getEmail());
-                transaction.setCompanyId(company.get().getCompanyId());
                 transaction.setDateTime(request.getDateTime());
 
                 //Link the products to the transaction
-                List<cartItems> cartItemsList = new ArrayList<>();
-                for (cartItems cartItems : request.getCartItems()){
-                    cartItems.setTransaction(transaction);
-                    cartItemsList.add(cartItems);
+                List<transactionItems> transactionItemsList = new ArrayList<>();
+                for (transactionItems transactionItems : request.getTransactionItems()){
+                    transactionItems.setTransaction(transaction);
+                    transactionItemsList.add(transactionItems);
                 }
                 //Add the product list
-                transaction.setCartItems(cartItemsList);
+                transaction.setTransactionItems(transactionItemsList);
 
                 transactionRepository.save(transaction);
 
                 return true;
             } catch (Exception e) {
-                e.printStackTrace();
+                e.fillInStackTrace();
                 return false;
             }
         } else {

@@ -4,16 +4,21 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;
-
+/*
+* Entity for Items that has been ordered.
+* Has a many-to-one relation with Transaction
+*/
 @Setter
 @Getter
 @Entity
-public class cartItems {
-
+public class transactionItems {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @NonNull
+    private String companyName;
 
     @NonNull
     private String name;
@@ -29,5 +34,5 @@ public class cartItems {
     @JoinColumn(name = "transaction_id")
     private Transaction transaction;
 
-    public cartItems(){}
+    public transactionItems(){}
 }

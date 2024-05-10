@@ -1,11 +1,15 @@
 package com.example.swifty.entity.users;
 
-import com.example.swifty.database.UserType;
+import com.example.swifty.utils.UserType;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;
-
+/*
+* This is the main user entity.
+* The user can be either an individual or company
+* with a one-to-one relation
+*/
 @Getter
 @Setter
 @Entity

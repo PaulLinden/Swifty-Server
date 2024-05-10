@@ -1,18 +1,16 @@
 package com.example.swifty.service;
 
-import com.example.swifty.database.UserType;
+import com.example.swifty.utils.UserType;
 import com.example.swifty.entity.users.Company;
 import com.example.swifty.entity.users.Individual;
 import com.example.swifty.entity.users.User;
 import com.example.swifty.repository.CompanyRepository;
 import com.example.swifty.repository.IndividualRepository;
 import com.example.swifty.repository.UserRepository;
-import com.example.swifty.utils.RegexUtils;
+import com.example.swifty.utils.Regex;
 import jakarta.transaction.Transactional;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -20,29 +18,35 @@ public class UserService {
     private final UserRepository userRepository;
     private final IndividualRepository individualRepository;
     private final CompanyRepository companyRepository;
+
     public UserService(UserRepository userRepository, IndividualRepository individualRepository, CompanyRepository companyRepository) {
         this.userRepository = userRepository;
         this.individualRepository = individualRepository;
         this.companyRepository = companyRepository;
     }
+
     public Optional<User> getUserById(Long id) {
         return userRepository.findById(id);
     }
+
     public Optional<User> findByUsernameOrEmail(String username) {
         return userRepository.findByUsername(username);
     }
+
     @Transactional
     public void registerUser(User newUser, Individual newIndividual) {
-            newIndividual.setUser(newUser);
-            userRepository.save(newUser);
-            individualRepository.save(newIndividual);
+        newIndividual.setUser(newUser);
+        userRepository.save(newUser);
+        individualRepository.save(newIndividual);
     }
+
     @Transactional
     public void registerCompany(User newUser, Company newCompany) {
         newCompany.setUser(newUser);
         userRepository.save(newUser);
         companyRepository.save(newCompany);
     }
+
     @Transactional
     public String updateUserAndIndividual(Long userId, User updatedUser, Individual updatedIndividual) {
         Optional<User> optionalUser = userRepository.findById(userId);
@@ -71,6 +75,7 @@ public class UserService {
             return "User not found";
         }
     }
+
     @Transactional
     public String updateUserAndCompany(Long userId, User updatedUser, Company updatedCompany) {
         Optional<User> optionalUser = userRepository.findById(userId);
@@ -100,6 +105,7 @@ public class UserService {
             return "User not found";
         }
     }
+
     public String validateUserLoginInput(String username, String password) {
 
         // Validate username
@@ -114,15 +120,16 @@ public class UserService {
 
         return "Validation passed";
     }
+
     public String validateUser(User user) {
         String username = user.getUsername();
         String password = user.getPassword();
         String email = user.getEmail();
 
         // Validate username
-        if (username == null || username.isEmpty()) {
+        if (username.isEmpty()) {
             return "Username cannot be empty";
-        } else if (!username.matches(RegexUtils.MAX_45)) {
+        } else if (!username.matches(Regex.MAX_45)) {
             return "Max 45 characters";
         }
 
@@ -132,64 +139,67 @@ public class UserService {
         }
 
         //Validate password
-        if (password == null || password.isEmpty()) {
+        if (password.isEmpty()) {
             return "Password cannot be empty";
-        } else if (!password.matches(RegexUtils.MAX_45)) {
+        } else if (!password.matches(Regex.MAX_45)) {
             return "Max 45 characters";
         }
 
         //Validate email
-        if (email == null || email.isEmpty()) {
+        if (email.isEmpty()) {
             return "Email cannot be empty";
-        } else if (!email.matches(RegexUtils.EMAIL_REGEX)) {
+        } else if (!email.matches(Regex.EMAIL_REGEX)) {
             return "Check format";
-        } else if (!email.matches(RegexUtils.MAX_45)) {
+        } else if (!email.matches(Regex.MAX_45)) {
             return "Max 45 characters";
         }
 
         return "Validation passed";
     }
-    public String validateIndividual(Individual individual){
+
+    public String validateIndividual(Individual individual) {
         String firstName = individual.getFirstName();
         String lastName = individual.getLastName();
         String birthdate = individual.getBirthdate();
 
-        if (firstName == null || firstName.isEmpty()){
+        if (firstName == null || firstName.isEmpty()) {
             return "Name can't be empty";
-        } else if (!firstName.matches(RegexUtils.LETTERS_REGEX)) {
+        } else if (!firstName.matches(Regex.LETTERS_REGEX)) {
             return "Max 45 characters";
         }
 
-        if (lastName == null || lastName.isEmpty()){
+        if (lastName == null || lastName.isEmpty()) {
             return "Name can't be empty";
-        } else if (!lastName.matches(RegexUtils.LETTERS_REGEX)) {
+        } else if (!lastName.matches(Regex.LETTERS_REGEX)) {
             return "Max 45 characters";
         }
 
-        if (!birthdate.matches(RegexUtils.BIRTHDATE_REGEX)){
+        if (!birthdate.matches(Regex.BIRTHDATE_REGEX)) {
             return "Wrong format";
         }
 
         return "Validation passed";
     }
-    public String validateCompany(Company company){
+
+    public String validateCompany(Company company) {
         String companyName = company.getCompanyName();
         String registerNumber = company.getRegisterNumber();
 
-        if (companyName == null || companyName.isEmpty()){
+        if (companyName == null || companyName.isEmpty()) {
             return "Can't be empty";
-        } else if (!companyName.matches(RegexUtils.MAX_45)) {
+        } else if (!companyName.matches(Regex.MAX_45)) {
             return "Max 45 characters";
         }
 
-        if (registerNumber == null || registerNumber.isEmpty()){
+        if (registerNumber == null || registerNumber.isEmpty()) {
             return "Can't be empty";
-        } else if (!companyName.matches(RegexUtils.MAX_45)) {
+        } else if (!companyName.matches(Regex.MAX_45)) {
             return "Max 45 characters";
         }
 
         return "Validation passed";
     }
+
     public String deleteUser(Long userId) {
         Optional<User> optionalUser = userRepository.findById(userId);
 
@@ -197,7 +207,6 @@ public class UserService {
             userRepository.deleteById(userId);
             return "User deleted successfully";
         } else {
-            // Handle the case where the user with the given ID is not found
             return "User not found";
         }
     }

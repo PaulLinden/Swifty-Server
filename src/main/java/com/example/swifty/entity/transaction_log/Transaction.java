@@ -7,7 +7,10 @@ import lombok.Setter;
 
 import java.time.LocalDateTime;
 import java.util.List;
-
+/*
+ * Entity for Transactions that has been ordered.
+ * Has a one-to-many relation with transactionItems
+ */
 @Setter
 @Getter
 @Entity
@@ -21,13 +24,11 @@ public class Transaction {
     @NonNull
     private String userEmail;
     @NonNull
-    private Long companyId;
-    @NonNull
     private LocalDateTime dateTime;
 
     @NonNull
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "transaction", cascade = CascadeType.ALL)
-    private List<cartItems> cartItems;
+    private List<transactionItems> transactionItems;
 
     public Transaction(){}
 }

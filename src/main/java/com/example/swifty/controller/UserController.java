@@ -18,7 +18,9 @@ import java.util.Objects;
 import java.util.Optional;
 
 import static com.example.swifty.dto.UserDTO.getUserDTO;
-
+/*
+* Endpoints for user operations.
+*/
 @RestController
 @RequestMapping("/api/users")
 public class UserController {
@@ -188,7 +190,7 @@ public class UserController {
         return requestMessage;
     }
 
-    //Delete methods ------ Needs additional methods or branched methods that remove individuals and company
+    //Delete methods ------ Needs further work so that it also removes individual/company that has relation.
     @DeleteMapping("/remove/{userId}")
     public String deleteUser(@PathVariable Long userId, HttpServletResponse response) {
         String requestMessage = userService.deleteUser(userId);

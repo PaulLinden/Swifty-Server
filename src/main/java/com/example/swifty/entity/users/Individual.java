@@ -3,7 +3,10 @@ package com.example.swifty.entity.users;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-
+/*
+ * This is the individual entity.
+ * The individual has a one-to-one relation with user.
+ */
 @Getter
 @Setter
 @Entity

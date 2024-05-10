@@ -2,10 +2,12 @@ package com.example.swifty.entity.users;
 
 import jakarta.persistence.*;
 import lombok.Getter;
-import lombok.NonNull;
 import lombok.Setter;
-import org.antlr.v4.runtime.misc.NotNull;
 
+/*
+ * This is the company entity.
+ * The company has a one-to-one relation with user.
+ */
 @Getter
 @Setter
 @Entity

@@ -8,7 +8,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-
+/*
+* Endpoint for transactions.
+*/
 @Controller
 @RequestMapping("/api")
 public class TransactionController {
@@ -16,11 +18,11 @@ public class TransactionController {
     public TransactionController(TransactionService transactionService) {
         this.transactionService = transactionService;
     }
+
     @PostMapping("/transaction")
     public ResponseEntity<String> transaction(@RequestBody TransactionRequest request) {
 
         boolean transactionStatus = transactionService.handleTransaction(request);
-        System.out.println(transactionStatus);
 
         if (transactionStatus){
             return ResponseEntity.status(HttpStatus.CREATED).body("Transaction completed");

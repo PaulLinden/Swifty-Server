@@ -8,20 +8,30 @@ import org.springframework.stereotype.Service;
 
 import java.util.concurrent.CompletableFuture;
 
+/*
+* This is the service layer for the company data retrieval.
+* Since the data is fetched async from RTDB.
+* Note! that the data is only a mock for simulating
+* an API call from the companies. This will need a lot of
+* further development in the future.
+*/
 @Service
-public class FirebaseService {
+public class CompanyService {
 
     private final FirebaseApp firebaseApp;
     @Autowired
-    public FirebaseService(FirebaseApp firebaseApp) {
+    public CompanyService(FirebaseApp firebaseApp) {
         this.firebaseApp = firebaseApp;
     }
-    public Object retrieveData(String path) {
+    //Method for retrieving data for response
+    public Object retrieveCompanyData(String path) {
         DatabaseReference reference = FirebaseDatabase.getInstance(firebaseApp).getReference(path);
-        return getData(reference);
+        CompletableFuture<Object> future = getCompanyFirebaseData(reference);
+        return future.join();
     }
+    //Async operation for getting data from Firebase - RTDB.
     @Async
-    public CompletableFuture<Object> getData(DatabaseReference reference) {
+    protected CompletableFuture<Object> getCompanyFirebaseData(DatabaseReference reference) {
         CompletableFuture<Object> future = new CompletableFuture<>();
 
         reference.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -32,7 +42,7 @@ public class FirebaseService {
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                future.completeExceptionally(new RuntimeException("Error retrieving data from Firebase: " + databaseError.getMessage()));
+                future.completeExceptionally(new RuntimeException(databaseError.getMessage()));
             }
         });
 
