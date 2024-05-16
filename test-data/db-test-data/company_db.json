@@ -1,0 +1,104 @@
+{
+  "companies": {
+    "netonet": {
+      "info": {
+        "name": "NetOnet",
+        "industry": "Technology"
+      },
+      "productList": {
+        "product1": {
+          "name": "Laptop",
+          "price": 999.99,
+          "quantity": 50,
+          "description": "Powerful laptop for professional use"
+        },
+        "product2": {
+          "name": "Smartphone",
+          "price": 599.99,
+          "quantity": 100,
+          "description": "Latest smartphone model"
+        }
+      }
+    },
+    "ikea": {
+      "info": {
+        "name": "IKEA",
+        "industry": "Furniture"
+      },
+      "productList": {
+        "product1": {
+          "name": "Bookshelf",
+          "price": 79.99,
+          "quantity": 30,
+          "description": "Stylish bookshelf with adjustable shelves"
+        },
+        "product2": {
+          "name": "Sofa",
+          "price": 499.99,
+          "quantity": 20,
+          "description": "Comfortable sofa for your living room"
+        }
+      }
+    },
+    "stadium": {
+      "info": {
+        "name": "Stadium",
+        "industry": "Sporting Goods"
+      },
+      "productList": {
+        "product1": {
+          "name": "Running Shoes",
+          "price": 79.99,
+          "quantity": 150,
+          "description": "High-performance running shoes"
+        },
+        "product2": {
+          "name": "Sports Jersey",
+          "price": 29.99,
+          "quantity": 100,
+          "description": "Official team jersey"
+        }
+      }
+    },
+    "guldfynd": {
+      "info": {
+        "name": "Guldfynd",
+        "industry": "Jewelry"
+      },
+      "productList": {
+        "product1": {
+          "name": "Diamond Ring",
+          "price": 1499.99,
+          "quantity": 10,
+          "description": "Exquisite diamond ring"
+        },
+        "product2": {
+          "name": "Gold Necklace",
+          "price": 799.99,
+          "quantity": 20,
+          "description": "Elegant gold necklace"
+        }
+      }
+    },
+    "hm": {
+      "info": {
+        "name": "H&M",
+        "industry": "Fashion"
+      },
+      "productList": {
+        "product1": {
+          "name": "T-Shirt",
+          "price": 9.99,
+          "quantity": 200,
+          "description": "Casual cotton t-shirt"
+        },
+        "product2": {
+          "name": "Jeans",
+          "price": 29.99,
+          "quantity": 150,
+          "description": "Classic denim jeans"
+        }
+      }
+    }
+  }
+}

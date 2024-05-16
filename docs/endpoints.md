@@ -1,0 +1,12 @@
+/api/transaction [POST]  
+/api/firebase/data [GET]  
+/api/users/allUsers [GET]  
+/api/users/findById/{userId} [GET]  
+/api/users/findByUsername/{username} [GET]  
+/api/users/loginUser [POST]  
+/api/users/register/company [POST]  
+/api/users/register/individual [POST]  
+/api/users/remove/{userId} [DELETE]  
+/api/users/update/company/{userId} [PUT]  
+/api/users/update/individual/{userId} [PUT]  
+

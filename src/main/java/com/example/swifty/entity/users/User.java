@@ -5,6 +5,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;
+import org.mindrot.jbcrypt.BCrypt;
+
 /*
 * This is the main user entity.
 * The user can be either an individual or company
@@ -36,4 +38,14 @@ public class User {
     private Company company;
 
     public User(){}
+
+    // Setter for password with automatic hashing
+    public void hashPassword(String password) {
+        this.password = BCrypt.hashpw(password, BCrypt.gensalt());
+    }
+
+    // Method to check if a provided password matches the hashed password
+    public boolean checkPassword(String password) {
+        return BCrypt.checkpw(password, this.password);
+    }
 }
