@@ -2,22 +2,26 @@
 
 ## Description
 
-This is the server for the Swifty-app that is a part of my thesis. This project is using **Spring-boot** & **MySql** and is
-applying **RESTful** principals. I'm also using **Firebase RTDB** as a mock to simulate an Api-call that will get the data from
-companys.
+This server hosts the Swifty app, an integral component of my thesis project. Built on **Spring Boot** and **MySQL*, the
+project adheres to **RESTful** principles. Additionally, **Firebase Realtime Database (RTDB)** is utilized as a mock to
+simulate
+API calls for retrieving data from companies.
 
-**Note** that this is a work in progress and is a minimum viable product that will be enhanced over time, making it
-more robust and scalable.
+It's important to note that this project is currently a work in progress, serving as a minimum viable product. Over
+time, it will undergo enhancements to bolster its robustness and scalability.
 
 ## Setup/Configuration
 
-1. Set up the MySql server:  
+Here's a step-by-step guide for setting up the MySQL server and configuring your application properties:
+
+1. #### Set up the MySql server:  
    ![mysql-setup.png](docs/mysql-setup.png)  
-   If you need further help check MySql documentation [here](https://dev.mysql.com/doc/mysql-getting-started/en/).  
-   I've added som [test data](test-data/db-test-data/company_db.json) for the database.
+   For detailed instructions, you can refer to
+   the [MySQL documentation](https://dev.mysql.com/doc/mysql-getting-started/en/).  
+   Additionally, test data for the database can be found  [here](test-data/db-test-data/company_db.json).
 
 
-2. Add the username and password to the application.properties:  
+2. #### Add the username and password to the application.properties:  
    ``spring.application.name="Swifty"``  
    ``spring.jpa.hibernate.ddl-auto=update``  
    ``spring.datasource.url=jdbc:mysql://${MYSQL_HOST:localhost}:3306/store``   
@@ -27,15 +31,19 @@ more robust and scalable.
    ``server.port=3000``
 
 
-3. Set up your [RTDB database](https://firebase.google.com/).   
-   Then in the firebase console you can then import the json to get the data that's needed.  
-   [swifty-rtdb-export.json](test-data/db-test-data/company_db.json)  
+3. #### Set up your [RTDB database](https://firebase.google.com/).   
+   Create a database on Firebase and import the JSON data
+   from [swifty-rtdb-export.json](test-data/db-test-data/company_db.json) to populate it.
    ![import_json.png](docs/import_json.png)
 
 
-4. Add the Firebase.config to the application.properties:
+4. #### Add the Firebase.config to the application.properties:
    ``firebase.config={your_serviceAccountKey.json.string}``  
    ``firebase.url={your_firebase_URL}``
 
 
-5. Now you are set and ready to use the server-application with the Swifty-app.
+5. #### You're all set!.
+   With the MySQL server and Firebase RTDB configured and the application properties updated, you're ready to use the
+   server-application with the Swifty app.
+
+### Feel free to reach out if you need further assistance!
