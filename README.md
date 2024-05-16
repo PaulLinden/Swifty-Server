@@ -2,7 +2,7 @@
 
 ## Description
 
-This server hosts the Swifty app, an integral component of my thesis project. Built on **Spring Boot** and **MySQL*, the
+This server hosts the Swifty app, an integral component of my thesis project. Built on **Spring Boot** and **MySQL**, the
 project adheres to **RESTful** principles. Additionally, **Firebase Realtime Database (RTDB)** is utilized as a mock to
 simulate
 API calls for retrieving data from companies.
