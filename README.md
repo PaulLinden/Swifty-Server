@@ -18,7 +18,7 @@ Here's a step-by-step guide for setting up the MySQL server and configuring your
    ![mysql-setup.png](docs/mysql-setup.png)  
    For detailed instructions, you can refer to
    the [MySQL documentation](https://dev.mysql.com/doc/mysql-getting-started/en/).  
-   Additionally, test data for the database can be found  [here](test-data/db-test-data/company_db.json).
+   Additionally, test data for the database can be found  [here](https://github.com/PaulLinden/Swifty-Server/blob/main/test-data/db-test-data/store.sql).
 
 
 2. #### Add the username and password to the application.properties:  
@@ -33,7 +33,7 @@ Here's a step-by-step guide for setting up the MySQL server and configuring your
 
 3. #### Set up your [RTDB database](https://firebase.google.com/).   
    Create a database on Firebase and import the JSON data
-   from [swifty-rtdb-export.json](test-data/db-test-data/company_db.json) to populate it.
+   from [swifty-rtdb-export.json](https://github.com/PaulLinden/Swifty-Server/blob/main/test-data/db-test-data/company_db.json) to populate it.
    ![import_json.png](docs/import_json.png)
 
 
