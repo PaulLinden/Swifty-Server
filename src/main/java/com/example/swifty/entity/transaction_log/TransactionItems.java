@@ -11,7 +11,7 @@ import lombok.Setter;
 @Setter
 @Getter
 @Entity
-public class transactionItems {
+public class TransactionItems {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,7 +21,7 @@ public class transactionItems {
     private String companyName;
 
     @NonNull
-    private String name;
+    private String productName;
 
     @NonNull
     private Float price;
@@ -34,5 +34,5 @@ public class transactionItems {
     @JoinColumn(name = "transaction_id")
     private Transaction transaction;
 
-    public transactionItems(){}
+    public TransactionItems(){}
 }

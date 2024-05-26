@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 /*
  * Entity for Transactions that has been ordered.
- * Has a one-to-many relation with transactionItems
+ * Has a one-to-many relation with TransactionItems
  */
 @Setter
 @Getter
@@ -28,7 +28,7 @@ public class Transaction {
 
     @NonNull
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "transaction", cascade = CascadeType.ALL)
-    private List<transactionItems> transactionItems;
+    private List<TransactionItems> transactionItems;
 
     public Transaction(){}
 }

@@ -1,7 +1,7 @@
 package com.example.swifty.service;
 
 import com.example.swifty.dto.TransactionRequest;
-import com.example.swifty.entity.transaction_log.transactionItems;
+import com.example.swifty.entity.transaction_log.TransactionItems;
 import com.example.swifty.entity.transaction_log.Transaction;
 import com.example.swifty.entity.users.User;
 import com.example.swifty.repository.TransactionRepository;
@@ -36,8 +36,8 @@ public class TransactionService {
                 transaction.setDateTime(request.getDateTime());
 
                 //Link the products to the transaction
-                List<transactionItems> transactionItemsList = new ArrayList<>();
-                for (transactionItems transactionItems : request.getTransactionItems()){
+                List<TransactionItems> transactionItemsList = new ArrayList<>();
+                for (TransactionItems transactionItems : request.getTransactionItems()){
                     transactionItems.setTransaction(transaction);
                     transactionItemsList.add(transactionItems);
                 }

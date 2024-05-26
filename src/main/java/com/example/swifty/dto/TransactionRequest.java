@@ -1,6 +1,6 @@
 package com.example.swifty.dto;
 
-import com.example.swifty.entity.transaction_log.transactionItems;
+import com.example.swifty.entity.transaction_log.TransactionItems;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,5 +14,5 @@ public class TransactionRequest {
     private Long userId;
     private String userEmail;
     private LocalDateTime dateTime;
-    private List<transactionItems> transactionItems;
+    private List<TransactionItems> transactionItems;
 }
