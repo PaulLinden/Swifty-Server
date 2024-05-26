@@ -10,18 +10,18 @@ public class UserDTO {
         private Long id;
         private String username;
         private String email;
-        private String name;
+        private String firstName;
         private String lastName;
-        private String birtDate;
+        private String birthdate;
 
         public static UserDTO getUserDTO(User currentUser, Individual currentUserIndividual) {
                 UserDTO userDTO = new UserDTO();
                 userDTO.setId(currentUser.getUserId());
                 userDTO.setUsername(currentUser.getUsername());
                 userDTO.setEmail(currentUser.getEmail());
-                userDTO.setName(currentUserIndividual.getFirstName());
+                userDTO.setFirstName(currentUserIndividual.getFirstName());
                 userDTO.setLastName(currentUserIndividual.getLastName());
-                userDTO.setBirtDate(currentUserIndividual.getBirthdate());
+                userDTO.setBirthdate(currentUserIndividual.getBirthdate());
                 return userDTO;
         }
 }

@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Objects;
 import java.util.Optional;
 
+import static com.example.swifty.utils.UserType.INDIVIDUAL;
+
 /*
  * Endpoints for user operations.
  */
@@ -80,10 +82,21 @@ public class UserController {
     //Post methods -----------------------------------------------------------------------------
     @PostMapping("/register/individual")
     String registerIndividual(@RequestBody IndividualRegisterRequest request, HttpServletResponse response) {
-
-        User registerUser = request.getUser();
-        Individual registerIndividual = request.getIndividual();
-
+        //Setup user entity
+        User registerUser = new User();
+        registerUser.setUsername(request.getUsername());
+        registerUser.setEmail(request.getEmail());
+        registerUser.setPassword(request.getPassword());
+        registerUser.setUserType(INDIVIDUAL);
+        //Setup individual entity
+        Individual registerIndividual = new Individual();
+        registerIndividual.setFirstName(request.getFirstName());
+        registerIndividual.setLastName(request.getLastName());
+        registerIndividual.setBirthdate(request.getBirthdate());
+        //Link entity's
+        registerUser.setIndividual(registerIndividual);
+        registerIndividual.setUser(registerUser);
+        //Register user
         String registrationStatus =userCreateService.registerIndividual(registerUser, registerIndividual);
 
         if (registrationStatus.equals("Validation passed")) {
@@ -112,8 +125,18 @@ public class UserController {
     //Update methods --- need additional methods for updating individual and company specifics.
     @PutMapping("/update/individual/{userId}")
     public String updateIndividualUser(@PathVariable Long userId, @RequestBody IndividualRegisterRequest request, HttpServletResponse response) {
-        User updatedUser = request.getUser();
-        Individual updatedIndividual = request.getIndividual();
+        User updatedUser = new User();
+        updatedUser.setUsername(request.getUsername());
+        updatedUser.setEmail(request.getEmail());
+        updatedUser.setPassword(request.getPassword());
+        updatedUser.setUserType(INDIVIDUAL);
+        Individual updatedIndividual = new Individual();
+        updatedIndividual.setFirstName(request.getFirstName());
+        updatedIndividual.setLastName(request.getLastName());
+        updatedIndividual.setBirthdate(request.getBirthdate());
+        //Link entity's
+        updatedUser.setIndividual(updatedIndividual);
+        updatedIndividual.setUser(updatedUser);
 
         String updateStatus = userUpdateService.updateUserAndIndividual(userId, updatedUser, updatedIndividual);
 
