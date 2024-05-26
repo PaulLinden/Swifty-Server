@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Objects;
 
-/*
-* Endpoint for getting data from the companies.
-*/
+/**
+ * Controller class for handling company-related requests.
+ */
 @RestController
 @RequestMapping("/api/firebase")
 public class CompanyController {
@@ -23,6 +23,11 @@ public class CompanyController {
         this.companyService = companyService;
     }
 
+    /**
+     * Endpoint for retrieving company data based on the provided path.
+     * @param path The path parameter specifying the data to retrieve.
+     * @return ResponseEntity containing the retrieved company data or error message.
+     */
     @GetMapping("data")
     private ResponseEntity<Object> getCompanyData(@RequestParam String path) {
 

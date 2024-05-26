@@ -16,6 +16,11 @@ import java.util.Optional;
 
 import static com.example.swifty.dto.UserDTO.getUserDTO;
 
+/**
+ * Service class for handling user creation and authentication operations.
+ * Provides methods for registering individuals and companies, as well as authenticating users.
+ */
+
 @Service
 public class UserCreateService {
 
@@ -30,6 +35,12 @@ public class UserCreateService {
         this.companyRepository = companyRepository;
     }
 
+    /**
+     * Authenticates a user based on the provided username and password.
+     * @param username The username of the user to authenticate.
+     * @param password The password of the user to authenticate.
+     * @return A RequestResult object containing the authentication status and user details if successful.
+     */
     public RequestResult authenticateUser(String username, String password) {
         String validateUser = inputValidation.validateUserLoginInput(username, password);
 
@@ -55,6 +66,12 @@ public class UserCreateService {
         return new RequestResult(false, "badRequest");
     }
 
+    /**
+     * Registers an individual user with the provided details.
+     * @param user The User object representing the individual user.
+     * @param registerIndividual The Individual object representing the individual's details.
+     * @return A string indicating the registration status.
+     */
     @Transactional
     public String registerIndividual(User user, Individual registerIndividual){
 
@@ -80,6 +97,12 @@ public class UserCreateService {
         return "Registered successfully";
     }
 
+    /**
+     * Registers a company user with the provided details.
+     * @param user The User object representing the company user.
+     * @param company The Company object representing the company's details.
+     * @return A string indicating the registration status.
+     */
     @Transactional
     public String registerCompany(User user, Company company){
 

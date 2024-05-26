@@ -8,9 +8,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-/*
-* Endpoint for transactions.
-*/
+/**
+ * Controller class for handling transaction-related requests.
+ */
 @Controller
 @RequestMapping("/api")
 public class TransactionController {
@@ -21,6 +21,11 @@ public class TransactionController {
         this.transactionService = transactionService;
     }
 
+    /**
+     * Endpoint for processing transaction requests.
+     * @param request The request body containing transaction details.
+     * @return ResponseEntity with the status of the transaction.
+     */
     @PostMapping("/transaction")
     public ResponseEntity<String> transaction(@RequestBody TransactionRequest request) {
 

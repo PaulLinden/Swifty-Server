@@ -3,7 +3,7 @@ package com.example.swifty.entity.users;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-
+//
 /*
  * This is the company entity.
  * The company has a one-to-one relation with user.

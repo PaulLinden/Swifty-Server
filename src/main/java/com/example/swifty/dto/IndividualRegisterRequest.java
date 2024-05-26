@@ -1,13 +1,19 @@
 package com.example.swifty.dto;
 
-import com.example.swifty.entity.users.Individual;
-import com.example.swifty.entity.users.User;
 import lombok.Getter;
 import lombok.Setter;
-
+/**
+ * Data Transfer Object (DTO) class representing a request to register an individual.
+ * Contains parameters necessary to populate both User and Individual entities.
+ */
 @Getter
 @Setter
 public class IndividualRegisterRequest {
-    User user;
-    Individual individual;
+    private Long id;
+    private String email;
+    private String username;
+    private String firstName;
+    private String lastName;
+    private String birthdate;
+    private String password;
 }

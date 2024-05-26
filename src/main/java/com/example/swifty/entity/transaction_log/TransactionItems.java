@@ -4,10 +4,10 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;
-/*
-* Entity for Items that has been ordered.
-* Has a many-to-one relation with Transaction
-*/
+/**
+ * Entity class representing items that have been ordered.
+ * Contains a many-to-one relation with Transaction.
+ */
 @Setter
 @Getter
 @Entity

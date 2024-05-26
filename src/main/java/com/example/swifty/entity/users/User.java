@@ -7,11 +7,10 @@ import lombok.NonNull;
 import lombok.Setter;
 import org.mindrot.jbcrypt.BCrypt;
 
-/*
-* This is the main user entity.
-* The user can be either an individual or company
-* with a one-to-one relation
-*/
+/**
+ * Entity class representing a user.
+ * Contains properties such as user ID, username, email, password, user type, and references to Individual and Company entities.
+ */
 @Getter
 @Setter
 @Entity
@@ -39,12 +38,19 @@ public class User {
 
     public User(){}
 
-    // Setter for password with automatic hashing
+    /**
+     * Setter method for hashing the password using BCrypt.
+     * @param password The password to be hashed.
+     */
     public void hashPassword(String password) {
         this.password = BCrypt.hashpw(password, BCrypt.gensalt());
     }
 
-    // Method to check if a provided password matches the hashed password
+    /**
+     * Method to check if a provided password matches the hashed password.
+     * @param password The password to be checked.
+     * @return true if the password matches, false otherwise.
+     */
     public boolean checkPassword(String password) {
         return BCrypt.checkpw(password, this.password);
     }

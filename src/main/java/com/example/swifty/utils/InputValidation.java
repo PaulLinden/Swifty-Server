@@ -5,9 +5,17 @@ import com.example.swifty.entity.users.Individual;
 import com.example.swifty.entity.users.User;
 import com.example.swifty.repository.UserRepository;
 
+/**
+ * Utility class for validating user input during registration and login.
+ */
 public class InputValidation {
 
-
+    /**
+     * Validates user registration input.
+     * @param user           The User object to validate.
+     * @param userRepository The UserRepository for checking username uniqueness.
+     * @return "Validation passed" if valid, otherwise an error message.
+     */
     public String validateRegisterUser(User user, UserRepository userRepository) {
         String username = user.getUsername();
         String password = user.getPassword();
@@ -16,11 +24,11 @@ public class InputValidation {
         // Validate username
         if (username.isEmpty()) {
             return "Username cannot be empty";
-        } else if (!username.matches(Regex.MAX_45)) {
+        } else if (!username.matches(Regex.MAX_100)) {
             return "Max 45 characters";
         }
 
-        // Check if username is unique
+        // Check if the username is unique
         if (userRepository.existsByUsername(username)) {
             return "Username is already taken";
         }
@@ -28,7 +36,7 @@ public class InputValidation {
         //Validate password
         if (password.isEmpty()) {
             return "Password cannot be empty";
-        } else if (!password.matches(Regex.MAX_45)) {
+        } else if (!password.matches(Regex.MAX_100)) {
             return "Max 45 characters";
         }
 
@@ -37,13 +45,18 @@ public class InputValidation {
             return "Email cannot be empty";
         } else if (!email.matches(Regex.EMAIL_REGEX)) {
             return "Check format";
-        } else if (!email.matches(Regex.MAX_45)) {
+        } else if (!email.matches(Regex.MAX_100)) {
             return "Max 45 characters";
         }
 
         return "Validation passed";
     }
 
+    /**
+     * Validates individual registration input.
+     * @param individual The Individual object to validate.
+     * @return "Validation passed" if valid, otherwise an error message.
+     */
     public String validateRegisterIndividual(Individual individual) {
         String firstName = individual.getFirstName();
         String lastName = individual.getLastName();
@@ -68,25 +81,36 @@ public class InputValidation {
         return "Validation passed";
     }
 
+    /**
+     * Validates company registration input.
+     * @param company The Company object to validate.
+     * @return "Validation passed" if valid, otherwise an error message.
+     */
     public String validateRegisterCompany(Company company) {
         String companyName = company.getCompanyName();
         String registerNumber = company.getRegisterNumber();
 
         if (companyName == null || companyName.isEmpty()) {
             return "Can't be empty";
-        } else if (!companyName.matches(Regex.MAX_45)) {
+        } else if (!companyName.matches(Regex.MAX_100)) {
             return "Max 45 characters";
         }
 
         if (registerNumber == null || registerNumber.isEmpty()) {
             return "Can't be empty";
-        } else if (!companyName.matches(Regex.MAX_45)) {
+        } else if (!companyName.matches(Regex.MAX_100)) {
             return "Max 45 characters";
         }
 
         return "Validation passed";
     }
 
+    /**
+     * Validates user login input.
+     * @param username The username to validate.
+     * @param password The password to validate.
+     * @return "Validation passed" if valid, otherwise an error message.
+     */
     public String validateUserLoginInput(String username, String password) {
 
         // Validate username
@@ -102,6 +126,12 @@ public class InputValidation {
         return "Validation passed";
     }
 
+    /**
+     * Checks if the provided password matches the hashed password of the user.
+     * @param user     The User object to check the password against.
+     * @param password The password to check.
+     * @return True if the passwords match, false otherwise.
+     */
     public boolean isCorrectPassword(User user, String password) {
         return user.checkPassword(password);
     }

@@ -7,9 +7,9 @@ import lombok.Setter;
 
 import java.time.LocalDateTime;
 import java.util.List;
-/*
- * Entity for Transactions that has been ordered.
- * Has a one-to-many relation with TransactionItems
+/**
+ * Entity class representing transactions that have been ordered.
+ * Contains a one-to-many relation with TransactionItems.
  */
 @Setter
 @Getter

@@ -13,6 +13,10 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+/**
+ * Service class for handling user update operations.
+ * Provides methods for updating user details, including individual-specific information.
+ */
 @Service
 public class UserUpdateService {
 
@@ -27,6 +31,13 @@ public class UserUpdateService {
         this.companyRepository = companyRepository;
     }
 
+    /**
+     * Updates user information and individual-specific details for a given user ID.
+     * @param userId The ID of the user to update.
+     * @param updatedUser The updated User object containing the new user details.
+     * @param updatedIndividual The updated Individual object containing the new individual-specific details.
+     * @return A message indicating whether the update was successful or if the user was not found.
+     */
     @Transactional
     public String updateUserAndIndividual(Long userId, User updatedUser, Individual updatedIndividual) {
         String validationUser = inputValidation.validateRegisterUser(updatedUser, userRepository);
@@ -67,6 +78,13 @@ public class UserUpdateService {
         }
     }
 
+    /**
+     * Updates user information and company-specific details for a given user ID.
+     * @param userId The ID of the user to update.
+     * @param updatedUser The updated User object containing the new user details.
+     * @param updatedCompany The updated Company object containing the new company-specific details.
+     * @return A message indicating whether the update was successful or if the user was not found.
+     */
     @Transactional
     public String updateUserAndCompany(Long userId, User updatedUser, Company updatedCompany) {
         String validationUser = inputValidation.validateRegisterUser(updatedUser, userRepository);

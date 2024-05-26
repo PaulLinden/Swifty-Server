@@ -13,6 +13,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Service class for handling transaction operations.
+ */
+
 @Service
 public class TransactionService {
 
@@ -23,6 +27,11 @@ public class TransactionService {
         this.transactionRepository = transactionRepository;
     }
 
+    /**
+     * Handles a transaction based on the provided transaction request.
+     * @param request The TransactionRequest containing the transaction details.
+     * @return True if the transaction was handled successfully, false otherwise.
+     */
     @Transactional
     public boolean handleTransaction(TransactionRequest request) {
 

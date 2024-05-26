@@ -6,6 +6,10 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+/**
+ * Service class for handling user deletion operations.
+ */
+
 @Service
 public class UserDeleteService {
 
@@ -15,6 +19,11 @@ public class UserDeleteService {
         this.userRepository = userRepository;
     }
 
+    /**
+     * Deletes a user by their ID.
+     * @param userId The ID of the user to delete.
+     * @return A message indicating whether the user was deleted successfully or not found.
+     */
     public String deleteUser(Long userId) {
         Optional<User> optionalUser = userRepository.findById(userId);
 
