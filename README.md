@@ -43,8 +43,6 @@ data, the server integrates with Firebase Realtime Database (RTDB).
 - Java: Primary programming language
 - REST: Architectural style for designing the API
 
-## Setup & Configuration
-
 ## Prerequisites
 
 - Java Development Kit (JDK) 8 or later
@@ -52,6 +50,8 @@ data, the server integrates with Firebase Realtime Database (RTDB).
 - Firebase project with Realtime Database enabled
 
 Here's a step-by-step guide for setting up the MySQL server and configuring your application properties:
+
+## Setup & Configuration
 
 ### Set up the MySql server:
 
