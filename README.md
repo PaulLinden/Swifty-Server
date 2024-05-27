@@ -26,8 +26,7 @@ time, it will undergo enhancements to bolster its robustness and scalability.
 Here's a step-by-step guide for setting up the MySQL server and configuring your application properties:
 
 #### 1.Set up the MySql server:
-
-![mysql-setup.png](docs/mysql-setup.png)  
+ <img src="docs/mysql-setup.png" alt="Set up" height="500">
 For detailed instructions, you can refer to
 the [MySQL documentation](https://dev.mysql.com/doc/mysql-getting-started/en/).  
 Additionally, test data for the database can be
@@ -48,17 +47,17 @@ found  [here](https://github.com/PaulLinden/Swifty-Server/blob/main/test-data/db
 Create a database on Firebase and import the JSON data
 from [swifty-rtdb-export.json](https://github.com/PaulLinden/Swifty-Server/blob/main/test-data/db-test-data/company_db.json)
 to populate it.
-![import_json.png](docs/import_json.png)
+<img src="docs/import_json.png" alt="Import Json" height="500">
 
 #### 4.Add the Firebase.config to the application.properties:
 
 ``firebase.config={your_serviceAccountKey.json.string}``  
 ``firebase.url={your_firebase_URL}``
 
-#### 5.You're all set!.
+#### 5.You're all set!
 
 With the MySQL server and Firebase RTDB configured and the application properties updated, you're ready to use the
-server-application with the Swifty app.
+server application with the Swifty app.
 
 ## Links
 
