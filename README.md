@@ -59,8 +59,13 @@ Here's a step-by-step guide for setting up the MySQL server and configuring your
 2. Create a database named store.
 3. Populate the database with the provided test
    data: [store.sql](https://github.com/PaulLinden/Swifty-Server/blob/main/test-data/db-test-data/store.sql).
+   
+<details open>
 
- <img src="docs/mysql-setup.png" alt="Set up" height="400">
+ [![Sign up](./docs/mysql-setup.png)](./docs/mysql-setup.png) 
+
+</details>
+
 
 For detailed instructions, you can refer to
 the [MySQL documentation](https://dev.mysql.com/doc/mysql-getting-started/en/).
@@ -90,7 +95,11 @@ Replace {Your_password} with your actual MySQL password.
 
 Replace the placeholders with your Firebase credentials and project URL.
 
-<img src="docs/import_json.png" alt="Import Json" height="400">
+<details open>
+    
+ [![Sign up](./docs/import_json.png)](./docs/import_json.png) 
+
+</details>
 
 ## You're all set!
 
