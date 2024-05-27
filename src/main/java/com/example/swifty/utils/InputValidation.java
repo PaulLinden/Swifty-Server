@@ -17,9 +17,9 @@ public class InputValidation {
      * @return "Validation passed" if valid, otherwise an error message.
      */
     public String validateRegisterUser(User user, UserRepository userRepository) {
-        String username = user.getUsername();
-        String password = user.getPassword();
-        String email = user.getEmail();
+        String username = user.getUsername().trim();
+        String password = user.getPassword().trim();
+        String email = user.getEmail().trim();
 
         // Validate username
         if (username.isEmpty()) {

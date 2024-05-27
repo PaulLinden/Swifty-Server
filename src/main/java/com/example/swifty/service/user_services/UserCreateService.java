@@ -37,12 +37,13 @@ public class UserCreateService {
 
     /**
      * Authenticates a user based on the provided username and password.
+     *
      * @param username The username of the user to authenticate.
      * @param password The password of the user to authenticate.
      * @return A RequestResult object containing the authentication status and user details if successful.
      */
     public RequestResult authenticateUser(String username, String password) {
-        String validateUser = inputValidation.validateUserLoginInput(username, password);
+        String validateUser = inputValidation.validateUserLoginInput(username.trim(), password.trim());
 
         if (validateUser.equals("Validation passed")) {
 
@@ -68,12 +69,13 @@ public class UserCreateService {
 
     /**
      * Registers an individual user with the provided details.
-     * @param user The User object representing the individual user.
+     *
+     * @param user               The User object representing the individual user.
      * @param registerIndividual The Individual object representing the individual's details.
      * @return A string indicating the registration status.
      */
     @Transactional
-    public String registerIndividual(User user, Individual registerIndividual){
+    public String registerIndividual(User user, Individual registerIndividual) {
 
         String validateUser = inputValidation.validateRegisterUser(user, userRepository);
         String validationIndividual = inputValidation.validateRegisterIndividual(registerIndividual);
@@ -85,26 +87,33 @@ public class UserCreateService {
         if (!validationIndividual.equals("Validation passed")) {
             return validationIndividual;
         }
-
-        user.hashPassword(user.getPassword());
-        // Print the hashed password
-        System.out.println("Hashed password: " + user.getPassword());
+        //Remove whitespace
+        user.hashPassword(user.getPassword().trim());
+        user.setUsername(user.getUsername().trim());
+        user.setEmail(user.getEmail().trim());
+        //Connect user to individual
         registerIndividual.setUser(user);
+        //Remove whitespace
+        registerIndividual.setFirstName(registerIndividual.getFirstName().trim());
+        registerIndividual.setLastName(registerIndividual.getFirstName().trim());
+        registerIndividual.setBirthdate(registerIndividual.getBirthdate().trim());
+        //Save to DB
         userRepository.save(user);
         individualRepository.save(registerIndividual);
 
-       // response.setStatus(HttpServletResponse.SC_CREATED);
+        //response.setStatus(HttpServletResponse.SC_CREATED);
         return "Registered successfully";
     }
 
     /**
      * Registers a company user with the provided details.
-     * @param user The User object representing the company user.
+     *
+     * @param user    The User object representing the company user.
      * @param company The Company object representing the company's details.
      * @return A string indicating the registration status.
      */
     @Transactional
-    public String registerCompany(User user, Company company){
+    public String registerCompany(User user, Company company) {
 
         String validationUser = inputValidation.validateRegisterUser(user, userRepository);
         String validationCompany = inputValidation.validateRegisterCompany(company);
